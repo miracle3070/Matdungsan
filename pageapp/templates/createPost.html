@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>맛등산 게시글 작성</title>
+    <title>맛등산 후기글 작성</title>
 </head>
+
 <body>
-    <h2>맛동산 게시글 작성</h2>
+    <h2>맛동산 후기글 작성</h2>
+    <form action="{% url 'createPost' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend>내용 입력</legend>
+            <li>
+                <label>제목<br><input type="text" name="title"><br><br></label>
+            </li>
+            <li>
+                <label>이미지<br><input type="file" name="image" accept=".gif, .jpg, .png"><br><br></label>
+            </li>
+            <li>
+                <label>내용<br><textarea name="content"></textarea></label>
+            </li>
+            <li>
+                <input type="hidden" name="username" value="{{ user.username }}">
+            </li>
+            <li>
+                <input type="submit" value="작성완료">
+            </li>
+        </fieldset>
+    </form>
 </body>
+
 </html>

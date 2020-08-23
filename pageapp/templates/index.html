@@ -32,9 +32,16 @@
     <p>로그인을 해야 글을 쓸 수 있습니다.</p>
     {% endif %}
 
-
+    <br><br><br><br>
     <h2>후기글 보기</h2>
     {% if user.is_authenticated %}
+    {% for post in posts %}
+    <h4>{{ post.title }}</h4>
+    <p>작성자: {{ post.username }}</p>
+    <img src="{{ post.image.url }}" alt="후기 사진">
+    <p>{{ post.content }}</p>
+    <p>*****************************************************</p>
+    {% endfor %}
 
     {% else %}
     <p>로그인을 해야 후기글을 볼 수 있습니다.</p>
