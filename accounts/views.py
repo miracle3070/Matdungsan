@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def login(request):
@@ -8,12 +9,13 @@ def login(request):
         username = request.POST['user_name']
         password = request.POST['user_password']
         user = auth.authenticate(request, username=username, password=password)
+        print(user)
         if user is not None:
             auth.login(request, user)
             return redirect('index')
         else:
             return render(request, 'login.html',
-            {'error': 'username or password is incorrect'})
+            {'error': '아이디 또는 비밀번호가 일치하지 않습니다.'})
     return render(request, 'login.html')
 
 def logout(request):
