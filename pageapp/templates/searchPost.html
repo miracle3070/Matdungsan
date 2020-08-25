@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>맛동산 후기글 읽기</title>
+    <title>맛동산 검색 페이지</title>
 </head>
 <body>
+    <h1>맛동산 검색 결과 페이지!!</h1>
     <a href="{% url 'index' %}">메인 화면으로 가기</a>
     <br><br>
 
     {% if user.is_authenticated %}
         <form action="{% url 'searchPost' %}" method="GET" autocomplete="on">
             <fieldset>
-                <legend>게시글 검색</legend>
+                <legend><em>게시글 검색</em></legend>
                 <input type="search" name="search" width="10">
                 <input type="submit" value="검색하기">
             </fieldset>
         </form>
 
-        <h2>전체 후기글</h2>
-        {% for post in posts %}
-        <h4>{{ post.title }}</h4>
-        <p>작성자: {{ post.username }}</p>
-        <img src="{{ post.image.url }}" alt="후기 사진">
-        <p>{{ post.content }}</p>
-        <p>*****************************************************</p>
+        {% for post in results %}
+        <fieldset>
+            <legend>{{ post.title }}</legend>
+            <p>작성자: {{ post.username }}</p>
+            <img src="{{ post.image.url }}" alt="후기 사진">
+            <p>{{ post.content }}</p>
+        </fieldset>
         {% endfor %}
     {% else %}
-        <h3>로그인을 하지 않고 들어오셨군요!<br>
-        먼저 로그인을 하고 시도해주세요!</h3>
+        <h2>로그인 후 이용해주세요.</h2>
     {% endif %}
 
-    
     
 </body>
 </html>

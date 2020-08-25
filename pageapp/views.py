@@ -25,3 +25,13 @@ def readPost(request):
     posts = Post.objects.all()
     post_content = {'posts' : posts}
     return render(request, 'readPost.html', post_content)
+
+def searchPost(request):
+    input_text = request.GET['search']
+    posts = Post.objects.all()
+    search_result = []
+    for post in posts:
+        if input_text in post.title:
+            search_result.append(post)    
+    results = {'results' : search_result}
+    return render(request, 'searchPost.html', results)

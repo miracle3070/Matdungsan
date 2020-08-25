@@ -9,4 +9,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('createPost/', views.createPost, name='createPost'),
     path('readPost/', views.readPost, name='readPost'),
+    path('searchPost/', views.searchPost, name='searchPost'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
