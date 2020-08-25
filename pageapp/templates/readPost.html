@@ -19,13 +19,21 @@
         </form>
 
         <h2>전체 후기글</h2>
+        
         {% for post in posts %}
-        <h4>{{ post.title }}</h4>
-        <p>작성자: {{ post.username }}</p>
-        <img src="{{ post.image.url }}" alt="후기 사진">
-        <p>{{ post.content }}</p>
-        <p>*****************************************************</p>
-        {% endfor %}
+            <fieldset>
+                <legend><strong>{{ post.title }}</strong></legend>
+                {% if post.username == user.username %}
+                    <a href="#">수정</a>
+                    <a href="{% url 'deletePost' post.id %}">삭제</a>
+                {% endif %}
+                <p>작성자: {{ post.username }}</p>
+                <img src="{{ post.image.url }}" alt="후기 사진">
+                <p>{{ post.content }}</p>
+            </fieldset>
+        {% endfor %}            
+        
+
     {% else %}
         <h3>로그인을 하지 않고 들어오셨군요!<br>
         먼저 로그인을 하고 시도해주세요!</h3>

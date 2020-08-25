@@ -18,10 +18,15 @@
                 <input type="submit" value="검색하기">
             </fieldset>
         </form>
-
+        
+        <h2>검색 결과</h2>
         {% for post in results %}
         <fieldset>
-            <legend>{{ post.title }}</legend>
+            <legend><strong>{{ post.title }}</strong></legend>
+                {% if post.username == user.username %}
+                    <a href="#">수정</a>
+                    <a href="{% url 'deletePost' post.id %}">삭제</a>
+                {% endif %}
             <p>작성자: {{ post.username }}</p>
             <img src="{{ post.image.url }}" alt="후기 사진">
             <p>{{ post.content }}</p>
