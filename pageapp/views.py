@@ -19,6 +19,9 @@ def createPost(request):
         new_post.save()
         print("정상적으로 저장 완료!")
         return redirect('index')
-
-
     return render(request, 'createPost.html')
+
+def readPost(request):
+    posts = Post.objects.all()
+    post_content = {'posts' : posts}
+    return render(request, 'readPost.html', post_content)

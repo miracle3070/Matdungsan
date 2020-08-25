@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>맛동산 후기글 읽기</title>
+</head>
+<body>
+    <a href="{% url 'index' %}">메인 화면으로..</a>
+
+    {% if user.is_authenticated %}
+    {% for post in posts %}
+    <h4>{{ post.title }}</h4>
+    <p>작성자: {{ post.username }}</p>
+    <img src="{{ post.image.url }}" alt="후기 사진">
+    <p>{{ post.content }}</p>
+    <p>*****************************************************</p>
+    {% endfor %}
+
+
+    {% else %}
+    <h3>로그인을 하지 않고 들어오셨군요!<br>
+    먼저 로그인을 하고 시도해주세요!</h3>
+    {% endif %}
+
+    
+    
+</body>
+</html>
