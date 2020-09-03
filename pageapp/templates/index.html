@@ -18,27 +18,28 @@
     <br><br><br>
     <h2>로그인 정보</h2>
     {% if user.is_authenticated %}
-    <p>환영합니다, {{ user.username }}님! (로그인 완료)</p>
+        <p>환영합니다, {{ user.username }}님! (로그인 완료)</p>
     {% else %}
-    <p>어서오세요, 먼저 로그인을 해주세요~</p>
+        <p>어서오세요, 먼저 로그인을 해주세요~</p>
     {% endif %}
 
     <br><br><br>
     <h2>글쓰기 기능</h2>
     {% if user.is_authenticated %}
-    <a href="{% url 'createPost' %}">글쓰기</a>
+        <a href="{% url 'createPost' %}">글쓰기</a>
     {% else %}
-    <p>로그인을 해야 글을 쓸 수 있습니다.</p>
+        <p>로그인을 해야 글을 쓸 수 있습니다.</p>
     {% endif %}
 
     <br><br><br>
     <h2>후기글 보기</h2>
     
     {% if user.is_authenticated %}
-    <a href="{% url 'readPost' %}">후기글 보러가기</a>
+        <a href="{% url 'readPost' %}">후기글 보러가기</a>
     {% else %}
-    <p>로그인을 해야 후기글을 볼 수 있습니다.</p>
+        <p>로그인을 해야 후기글을 볼 수 있습니다.</p>
     {% endif %}
+
 
 </body>
 </html>
