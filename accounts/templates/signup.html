@@ -26,7 +26,25 @@
                 <li>
                     <label>이메일 <input type="email" name="user_email" size="20"></label>
                 </li>
+                <li>
+                    <label>성별</label>
+                    <br>
+                    <label><input type="radio" name="gender" value="남자">남자</label>
+                    <label><input type="radio" name="gender" value="여자">여자</label>
+                </li>
+                <li>
+                    <label>연령대</label>
+                    <br>
+                    <label><input type="radio" name="age_group" value="10">10대 이하 </label>
+                    <label><input type="radio" name="age_group" value="20">20대 </label>
+                    <label><input type="radio" name="age_group" value="30">30대 </label>
+                    <label><input type="radio" name="age_group" value="40">40대 </label>
+                    <label><input type="radio" name="age_group" value="50">50대 이상</label>
+                </li>
             </ul>
+            <input type="hidden" name="complete_count" value="0">
+            <input type="hidden" name="grade" value="등린이">
+            
             <input type="submit" value="회원가입">
             <input type="reset" value="다시 입력">
         </fieldset>

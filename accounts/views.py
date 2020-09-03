@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.http import HttpResponseRedirect
+from .models import *
 
 # Create your views here.
 def login(request):
@@ -30,7 +31,17 @@ def signup(request):
                 username=request.POST['user_name'], password=request.POST['user_password1'],
                 email=request.POST['user_email']
             )
+            gender = request.POST['gender']
+            age_group = request.POST['age_group']
+            complete_count = request.POST['complete_count']
+            grade = request.POST['grade']
+            profile = Profile(user=user, gender=gender, age_group=age_group, complete_count=complete_count, grade=grade)
+            profile.save()
+
             auth.login(request, user)
             return redirect('index')
         return render(request, 'signup.html')
     return render(request, 'signup.html')
+
+def loginInfo(request):
+    return render(request, "loginInfo.html")
