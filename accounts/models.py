@@ -10,3 +10,5 @@ class Profile(models.Model):
     complete_count = models.IntegerField(blank=False)
     grade = models.CharField(max_length=10, blank=False)
     completeMT = models.CharField(max_length=20, blank=True)
+
+
