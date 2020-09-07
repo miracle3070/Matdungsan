@@ -19,7 +19,7 @@
     <h2>로그인 정보</h2>
     {% if user.is_authenticated %}
         <p>환영합니다, {{ user.username }}님! (로그인 완료)</p>
-        <a href="{% url 'accounts:loginInfo' %}">로그인 정보 조회</a0>
+        <a href="{% url 'accounts:loginInfo' %}">로그인 정보 조회</a>
         
         {% if user.username == "admin" %}
             <a href="{% url 'mountains:addMountain' %}">
