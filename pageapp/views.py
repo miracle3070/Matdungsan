@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import *
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.models import User
-
 # Create your views here.
 
 def index(request):
@@ -41,14 +40,3 @@ def deletePost(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.delete()
     return redirect('readPost')
-
-def completeClimbing(request):
-    if request.method == "POST":
-        user_id = request.POST["user_id"]
-        user = User.objects.get(pk=user_id)
-        print("설정 전:", user.profile.complete_count)
-        user.profile.complete_count += 1
-        print("설정 후:", user.profile.complete_count)
-        user.profile.save()
-        return redirect('index')
-    return render(request, 'completeClimbing.html')

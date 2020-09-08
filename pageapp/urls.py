@@ -11,5 +11,4 @@ urlpatterns = [
     path('readPost/', views.readPost, name='readPost'),
     path('searchPost/', views.searchPost, name='searchPost'),
     path('deletePost/<int:post_id>', views.deletePost, name='deletePost'),
-    path('completeClimbing/', views.completeClimbing, name="completeClimbing"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

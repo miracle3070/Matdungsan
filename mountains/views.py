@@ -12,3 +12,19 @@ def addMountain(request):
         mountain.save()
         return redirect('index')
     return render(request, "addMountain.html")
+
+
+def completeClimbing(request):
+    mountains = Mountain.objects.all()
+    return render(request, 'completeClimbing.html', {'mountains':mountains})
+    
+
+def searchingResult(request):
+    input = request.GET['search']
+    splited_str = input.split() # 검색창에 입력한 문자열을 공백을 기준으로 나눔
+    san_str = "" # '산'이 들어간 문자열 저장할 곳
+    for x in splited_str:
+        if '산' in x:
+            san_str = x
+    mountain = Mountain.objects.get(name=san_str)
+    return render(request, 'searchingResult.html', {'mountain':mountain})

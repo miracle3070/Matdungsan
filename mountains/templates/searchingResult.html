@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>산 검색결과</title>
+</head>
+<body>
+    <h2>산 검색결과 페이지</h2>
+
+    <form method="GET" action="#">
+        {% csrf_token %}
+        <fieldset>
+            <legend>산 검색</legend>
+            <input type="search" name="search">
+            <input type="submit" value="검색">
+        </fieldset>
+    </form>
+
+    <h2>검색결과</h2>
+    <fieldset>
+        <legend><h4>{{ mountain.name }}</h4></legend>
+        <p> {{ mountain.address }}</p>
+        <a href="#">
+            <button>완등</button>
+        </a>
+    </fieldset>
+    
+</body>
+</html>

@@ -35,7 +35,7 @@
 
     <h2>완등하러 가기</h2>
     {% if user.is_authenticated %}
-        <a href="{% url 'completeClimbing' %}">완등하러 갑시다!</a>
+        <a href="{% url 'mountains:completeClimbing' %}">완등하러 갑시다!</a>
     {% else %}
         <p>먼저 로그인을 해주세요~</p>
     {% endif%}
