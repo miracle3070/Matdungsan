@@ -21,9 +21,13 @@
         <fieldset>
             <legend><h4>{{ mt.name }}</h4></legend>
             <p>{{ mt.address }}</p>
-            <a href="#">
-                <button>완등</button>
-            </a>
+            <form method="POST" action="{% url 'mountains:completeMT' %}">
+                {% csrf_token %}
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <input type="hidden" name="mt_id" value="{{ mt.id }}">
+                <input type="hidden" name="mt_name" value="{{ mt.name }}">
+                <input type="submit" value="완등">
+            </form>
         </fieldset>
     {% endfor %}
     

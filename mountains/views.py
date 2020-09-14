@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
+from django.contrib.auth.models import User
+from accounts.models import Profile
 
 # Create your views here.
 
@@ -28,3 +30,20 @@ def searchingResult(request):
             san_str = x
     mountain = Mountain.objects.get(name=san_str)
     return render(request, 'searchingResult.html', {'mountain':mountain})
+
+def completeMT(request):
+    user_id = int(request.POST['user_id'])
+    mt_id = int(request.POST['mt_id'])
+    mt_name = request.POST['mt_name']
+    
+    user = get_object_or_404(User, pk=user_id)
+    mt = get_object_or_404(Mountain, pk=mt_id)
+
+    com_mt = CompletedMT() # 완등한 산을 저장하는 모델
+    com_mt.user_id = user
+    com_mt.mountain_id = mt
+    com_mt.mountain_name = mt_name
+    com_mt.save()
+    user.profile.complete_count += 1
+    user.profile.save()    
+    return redirect('index')
