@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.http import HttpResponseRedirect
 from .models import *
+from mountains.models import CompletedMT
 
 # Create your views here.
 def login(request):
@@ -45,3 +46,19 @@ def signup(request):
 
 def loginInfo(request):
     return render(request, "loginInfo.html")
+
+
+# 객체가 iterable인지 확인하는 함수임
+def isiterable(p_object):
+    try:
+        it = iter(p_object)
+    except TypeError:
+        return False
+    return True
+
+
+def myCompletedMT(request):
+    user_id = request.POST['user_id']
+    myCompletedMT = get_object_or_404(CompletedMT, user_id=user_id)
+    is_iterable = isiterable(myCompletedMT)
+    return render(request, "myCompletedMT.html", {'mountains' : myCompletedMT, 'is_iterable':is_iterable})

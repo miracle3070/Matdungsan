@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>맛등산 :: 완등한 산 보기</title>
+</head>
+<body>
+    <h1>{{ user.username }} 님이 완등한 산은?</h1>
+    <fieldset>
+        <legend><h2>내가 완등한 산은...</h2></legend>
+        {% if is_iterable %}
+            {% for mt in mountains %}
+                <p>{{ mt.mountain_name }}</p>
+            {% endfor %}
+        {% else %}
+            <p>{{ mountains.mountain_name }}</p>
+        {% endif %}
+    </fieldset>
+    
+</body>
+</html>

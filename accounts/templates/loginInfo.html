@@ -13,6 +13,11 @@
         완등 횟수: {{ user.profile.complete_count }}<br>
         등급: {{ user.profile.grade }}<br>
     </p>
+    <form method="POST" action="{% url 'accounts:myCompletedMT' %}">
+        {% csrf_token %}
+        <input type="hidden" value="{{ user.id }}" name="user_id">
+        <input type="submit" value="완등한 산 보기">
+    </form>
     
 </body>
 </html>
