@@ -59,6 +59,6 @@ def isiterable(p_object):
 
 def myCompletedMT(request):
     user_id = request.POST['user_id']
-    myCompletedMT = get_object_or_404(CompletedMT, user_id=user_id)
+    myCompletedMT = CompletedMT.objects.filter(user_id=user_id)
     is_iterable = isiterable(myCompletedMT)
     return render(request, "myCompletedMT.html", {'mountains' : myCompletedMT, 'is_iterable':is_iterable})

@@ -45,5 +45,11 @@ def completeMT(request):
     com_mt.mountain_name = mt_name
     com_mt.save()
     user.profile.complete_count += 1
+    if user.profile.complete_count >= 10:
+        user.profile.grade = "프로산악인"
+    elif user.profile.complete_count >= 5:
+        user.profile.grade = "등산매니아"
+    else:
+        pass
     user.profile.save()    
     return redirect('index')
