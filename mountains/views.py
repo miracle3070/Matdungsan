@@ -17,8 +17,16 @@ def addMountain(request):
 
 
 def completeClimbing(request):
+    user_id = request.POST["user_id"]
     mountains = Mountain.objects.all()
-    return render(request, 'completeClimbing.html', {'mountains':mountains})
+
+    # 이미 완등했던 산의 정보를 불러와서 산의 id값 정보를 html로 넘긴다.
+    completed_mt = CompletedMT.objects.filter(user_id=user_id)
+    completed_mt_id = []
+    for com_mt in completed_mt:
+        print(com_mt.mountain_id.id)
+        completed_mt_id.append(com_mt.mountain_id.id)
+    return render(request, 'completeClimbing.html', {'mountains':mountains, 'completed_mt_id':completed_mt_id})
     
 
 def searchingResult(request):

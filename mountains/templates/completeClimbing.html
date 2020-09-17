@@ -21,13 +21,17 @@
         <fieldset>
             <legend><h4>{{ mt.name }}</h4></legend>
             <p>{{ mt.address }}</p>
-            <form method="POST" action="{% url 'mountains:completeMT' %}">
-                {% csrf_token %}
-                <input type="hidden" name="user_id" value="{{ user.id }}">
-                <input type="hidden" name="mt_id" value="{{ mt.id }}">
-                <input type="hidden" name="mt_name" value="{{ mt.name }}">
-                <input type="submit" value="완등">
-            </form>
+            {% if mt.id not in completed_mt_id  %}
+                <form method="POST" action="{% url 'mountains:completeMT' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    <input type="hidden" name="mt_id" value="{{ mt.id }}">
+                    <input type="hidden" name="mt_name" value="{{ mt.name }}">
+                    <input type="submit" value="완등">
+                </form>
+            {% else %}
+                <p>완등 완료</p>
+            {% endif %}
         </fieldset>
     {% endfor %}
     
